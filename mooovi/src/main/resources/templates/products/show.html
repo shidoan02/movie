@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="content">
+
+<head>
+    <meta charset="UTF-8" th:remove="all" />
+    <title th:text="${product.title}">オオカミ少女と黒王子</title>
+</head>
+
+<body class="yj950-2">
+
+<div layout:fragment="main">
+    <article class="section">
+        <div>
+            <header class="header header--section">
+                <h2 class="text-middle" th:inline="text">
+                    <i class="icon-movie color-gray-light"></i>[[${product.title}]]
+                </h2>
+            </header>
+            <p style="text-align: center">
+                <img src="http://image.eiga.k-img.com/images/movie/82939/poster2/200.jpg?1456105504" alt="オオカミ少女と黒王子" th:src="${product.imageUrl}" />
+            </p>
+            <div style="text-align: right">
+                <a href="/products/1/reviews" th:href="@{'/products/' + ${product.id} + '/reviews'}">この作品を投稿する</a>
+            </div>
+            <header class="header header--section">
+                <h2 class="text-middle">
+                    <i class="icon-movie color-gray-light"></i>みんなのレビュー
+                </h2>
+            </header>
+            <ul style="padding: 0">
+
+                <li th:each="review : ${product.reviews}" style="border-bottom: dotted 1px">
+                    <div class="thumbnail__caption">
+                        <h3 class="text-xsmall text-overflow" title="mori">
+                            <!-- <span><i class="icon-rate-60 text-xxsmall opacity-60" title=""></i></span><span th:text="${review.nickname}">ニックネーム</span> -->
+                        </h3>
+                        <p class="text-small">
+                            <span class="rating-star"><i th:classappend="'rate-' + ${review.rate} + '0'" class="star-actived"></i></span>
+                        </p>
+                        <p th:text="${review.comment}">おもしろい</p>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </article>
+</div>
+
+</body>
+
+</html>

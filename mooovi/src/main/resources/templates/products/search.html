@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="content">
+
+<head>
+    <meta charset="UTF-8" th:remove="all" />
+    <title>検索</title>
+</head>
+
+<body class="yj950-2">
+
+<div layout:fragment="main">
+    <article class="section">
+        <div>
+            <header class="header header--section">
+                <h2 class="text-middle">
+                    <i class="icon-movie color-gray-light"></i>投稿する作品を検索
+                </h2>
+            </header>
+            <form action="/products/search" accept-charset="UTF-8" method="get">
+                <input class="search__query" name="keyword" placeholder="作品名で検索" type="text" value="" />
+                <button class="btn-search" title="検索" type="submit"><i class="icon-search"></i></button>
+            </form>
+        </div>
+    </article>
+    <article class="section">
+        <div>
+            <header class="header header--section">
+                <h2 class="text-middle">
+                    <i class="icon-movie color-gray-light"></i>検索結果
+                </h2>
+            </header>
+            <ul class="listview js-lazy-load-images">
+
+                <li th:each="product : ${products}">
+                    <a class="listview__element--right-icon" href="/products/1/reviews/new" th:href="@{'/products/' + ${product.id} + '/reviews'}" title="オオカミ少女と黒王子">
+                        <div class="position-right p1em">
+                            <i class="icon-chevron-right color-sub"></i>
+                        </div>
+                        <div class="row no-space-bottom">
+                            <div class="col2">
+                                <div class="thumbnail thumbnail--movies">
+                                    <div class="thumbnail__figure" style="background-image: url(http://image.eiga.k-img.com/images/movie/82939/poster2/200.jpg?1456105504);" th:style="'background-image:url(' + ${product.imageUrl} + ')'" title="オオカミ少女と黒王子"></div>
+                                </div>
+                            </div>
+                            <div class="col6 push6">
+                                <h3 class="text-middle text-break">
+                                    <span class="color-sub" th:text="${product.title}">オオカミ少女と黒王子</span>
+                                </h3>
+                                <p class="text-xsmall text-overflow" th:text="${product.detail}">
+                                    八田鮎子の同名人気コミックを二階堂ふみ、山崎賢人の主演で実写映画化。恋愛経験ゼロにもかかわらず、見栄っ張りで友達と架空の彼氏との恋愛話を語る「オオカミ少女」の篠原エリカ。街で見かけたイケメンの盗撮写真を自分の彼氏だと偽り、友達をやりすごそうとするが、写真の男は女子から絶大な人気を集めている同級生・佐田恭也だった。エリカは事情を打ち明け、恭也に彼氏のフリをすることを承諾してもらうが、その代わりにエリカが飲んだ条件は恭也の「犬」となること。人当たりがよく人気者の恭也の本性は、評判とは真逆の、腹黒で超がつくドSの「黒王子」だったのだ。かくして、偽装カップルとなったエリカと恭也だったが……。監督は「ストロボ・エッジ」「娚の一生」など少女コミックの映画化を数多く手がけている廣木隆一。
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </article>
+
+</div>
+
+</body>
+
+</html>

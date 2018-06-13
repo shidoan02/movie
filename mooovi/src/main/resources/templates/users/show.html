@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+
+<head>
+    <meta charset="UTF-8" th:remove="all" />
+    <title th:text="${user.nickname}">techcamp太郎</title>
+</head>
+
+<body class="yj950-2">
+
+<div class="user_page" layout:fragment="content">
+    <header class="user_page-header">
+        <div class="yjContainer">
+            <a href="">
+                <div class="user_image"><img th:src="@{'/users/' + ${user.id} + '/profile-image.jpg'}" src="/avatars/original/missing.png" alt="Missing" /></div>
+                <h2 th:inline="text">[[${user.nickname}]] <span>さんのマイページ</span></h2>
+            </a>
+        </div>
+    </header>
+    <div class="pt1em pb1em" id="contents">
+        <div id="main_cnt_wrapper">
+            <div id="yjContentsBody">
+                <div class="yjContainer">
+                    <ul class="user_page-contents">
+
+                        <li th:each="review : ${user.reviews}" th:style="'background-image:url(' + ${review.product.imageUrl} + ')'" style="background-image: url('http://image.eiga.k-img.com/images/movie/84396/poster2/200.jpg?1456105395')">
+                            <div class="meta">
+                                <header>
+                                    <div class="title" th:text="${review.product.title}">エンド・オブ・キングダム</div>
+                                    <span class="star"><span class="rating-star"><i th:classappend="'rate-' + ${review.rate * 10}" class="star-actived"></i></span></span>
+                                </header>
+                                <div th:text="${review.comment}" class="user_review">good</div>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
